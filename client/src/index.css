@@ -1530,152 +1530,162 @@ button:focus-visible, input:focus-visible { outline: 2px solid #f3a62a; outline-
    MOBILE & RESPONSIVE COMPATIBILITY SUITE (< 768px & < 480px)
    ========================================================================== */
 
-@media (max-width: 768px) {
-  /* Header HUD Layout */
+@media (max-width: 640px) {
+  /* Ultra-Clean Single-Row Header Bar for Mobile */
   .reference-header.luxury-header {
-    top: 12px;
-    right: 12px;
-    left: 12px;
-    flex-wrap: wrap;
-    gap: 8px;
+    top: 10px !important;
+    right: 10px !important;
+    left: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
   }
 
   .header-left-cluster,
   .header-right-cluster {
-    gap: 6px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    flex-wrap: nowrap !important;
   }
 
-  .luxury-status,
-  .luxury-time,
-  .horn-ok-please-badge,
-  .hud-action-button {
-    height: 32px !important;
+  /* Compact Mobile Status Badge */
+  .luxury-status {
+    height: 30px !important;
+    padding: 0 9px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.04em !important;
+    white-space: nowrap !important;
+  }
+
+  .luxury-status span:last-child {
+    display: inline-block;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Compact Horn OK Badge */
+  .horn-ok-please-badge {
+    height: 30px !important;
     padding: 0 10px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.04em !important;
+    white-space: nowrap !important;
+  }
+
+  /* Compact Icon Pills for Mobile Header */
+  .hud-action-button {
+    height: 30px !important;
+    padding: 0 9px !important;
     font-size: 11px !important;
   }
 
+  /* Hide long button text on phone screens to prevent wrapping */
   .hud-button-label {
-    font-size: 11px !important;
+    display: none !important;
   }
 
-  /* Poster Title scaling */
+  /* Hide desktop-only shortcut and fullscreen buttons on mobile */
+  .fullscreen-toggle,
+  .shortcuts-btn {
+    display: none !important;
+  }
+
+  /* Compact Clock Pill */
+  .luxury-time {
+    height: 30px !important;
+    padding: 0 9px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  /* Poster Title Mobile Scaling */
   .poster-title {
-    top: 14%;
-    right: 5%;
+    top: 15% !important;
+    right: 4% !important;
   }
 
   .poster-title h1 {
-    font-size: clamp(38px, 10vw, 68px) !important;
+    font-size: clamp(32px, 8.5vw, 48px) !important;
+    line-height: 0.95 !important;
   }
 
   .poster-title span {
-    font-size: clamp(22px, 5.5vw, 36px) !important;
+    font-size: clamp(18px, 4.5vw, 26px) !important;
   }
 
-  /* Player Dock Compact Mobile Layout */
+  /* Streamlined Mobile Player Dock */
   .player-dock {
-    width: calc(100% - 20px) !important;
-    bottom: 12px !important;
-    padding: 8px 12px 8px !important;
-    border-radius: 18px !important;
+    width: calc(100% - 18px) !important;
+    bottom: 10px !important;
+    padding: 9px 12px 8px !important;
+    border-radius: 20px !important;
   }
 
   .player-main-row {
-    gap: 6px;
+    gap: 8px !important;
   }
 
   .album-button {
-    width: 34px !important;
-    height: 34px !important;
+    width: 38px !important;
+    height: 38px !important;
   }
 
   .track-copy strong {
-    font-size: 10px !important;
+    font-size: 10.5px !important;
+    max-width: 140px !important;
   }
 
   .track-copy span {
     font-size: 8.5px !important;
+    max-width: 140px !important;
   }
 
   .play-button {
-    width: 34px !important;
-    height: 34px !important;
+    width: 36px !important;
+    height: 36px !important;
   }
 
-  .icon-button,
-  .volume-button {
-    width: 25px !important;
-    height: 25px !important;
+  .icon-button {
+    width: 28px !important;
+    height: 28px !important;
   }
 
-  .volume-slider {
-    width: 42px !important;
-  }
-
-  /* Tree & Background Elements for Mobile */
-  .horizon-tree-container {
-    left: 65% !important;
-    bottom: 18% !important;
-    transform: scale(0.62) !important;
-  }
-
-  .lunar-moon-container {
-    top: 14% !important;
-    right: 15% !important;
-  }
-
-  .crescent-moon-svg {
-    width: 38px !important;
-    height: 38px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .reference-header.luxury-header {
-    top: 8px;
-    right: 8px;
-    left: 8px;
-  }
-
-  .header-left-cluster {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .header-right-cluster {
-    width: 100%;
-    justify-content: flex-end;
-    overflow-x: auto;
-    padding-bottom: 2px;
-  }
-
-  /* Hide non-essential volume slider on ultra-narrow phones */
+  /* Hide in-app volume slider on phones (users use physical hardware buttons) */
+  .volume-button,
   .volume-slider {
     display: none !important;
   }
 
-  .poster-title {
-    top: 17%;
-    right: 4%;
-  }
-
-  .poster-title h1 {
-    font-size: clamp(30px, 9vw, 44px) !important;
-  }
-
-  .poster-title span {
-    font-size: clamp(18px, 5vw, 24px) !important;
-  }
-
-  .player-dock {
-    width: calc(100% - 14px) !important;
-    bottom: 8px !important;
-    padding: 6px 10px !important;
-  }
-
+  /* Background Tree & Moon Mobile Positioning */
   .horizon-tree-container {
-    left: 62% !important;
-    bottom: 20% !important;
-    transform: scale(0.52) !important;
+    left: 68% !important;
+    bottom: 22% !important;
+    transform: scale(0.55) !important;
+  }
+
+  .lunar-moon-container {
+    top: 14% !important;
+    right: 12% !important;
+  }
+
+  .crescent-moon-svg {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .luxury-status span:last-child {
+    max-width: 85px !important;
+  }
+
+  .track-copy strong,
+  .track-copy span {
+    max-width: 110px !important;
   }
 }
