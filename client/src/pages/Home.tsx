@@ -716,15 +716,26 @@ export default function Home() {
   // Playback handlers
   const togglePlay = () => {
     const player = playerRef.current;
-    if (!player || !playerReady) {
-      pendingPlayRef.current = true;
-      return;
-    }
     if (isPlaying) {
-      player.pauseVideo();
+      setIsPlaying(false);
+      try {
+        player?.pauseVideo();
+      } catch {}
+      if (keepAliveAudioRef.current) {
+        keepAliveAudioRef.current.pause();
+      }
     } else {
-      player.loadPlaylist({ listType: "playlist", list: PLAYLIST_ID, index: activeIndex });
-      player.playVideo();
+      setIsPlaying(true);
+      try {
+        if (player && playerReady) {
+          player.playVideo();
+        } else {
+          pendingPlayRef.current = true;
+        }
+      } catch {}
+      if (keepAliveAudioRef.current) {
+        keepAliveAudioRef.current.play().catch(() => {});
+      }
     }
   };
 
@@ -867,10 +878,22 @@ export default function Home() {
 
     try {
       navigator.mediaSession.setActionHandler("play", () => {
-        togglePlay();
+        setIsPlaying(true);
+        if (keepAliveAudioRef.current) {
+          keepAliveAudioRef.current.play().catch(() => {});
+        }
+        try {
+          playerRef.current?.playVideo();
+        } catch {}
       });
       navigator.mediaSession.setActionHandler("pause", () => {
-        togglePlay();
+        setIsPlaying(false);
+        if (keepAliveAudioRef.current) {
+          keepAliveAudioRef.current.pause();
+        }
+        try {
+          playerRef.current?.pauseVideo();
+        } catch {}
       });
       navigator.mediaSession.setActionHandler("previoustrack", () => {
         previousTrack();
