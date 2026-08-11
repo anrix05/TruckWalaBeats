@@ -880,6 +880,25 @@ export default function Home() {
     }
   }, [activeTrack, isPlaying]);
 
+  const keepAliveAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Mobile Background Audio Keep-Alive via HTML5 Audio Element
+  useEffect(() => {
+    if (isPlaying) {
+      if (!keepAliveAudioRef.current) {
+        const audio = new Audio("data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=");
+        audio.loop = true;
+        audio.volume = 0.001;
+        keepAliveAudioRef.current = audio;
+      }
+      keepAliveAudioRef.current.play().catch(() => {});
+    } else {
+      if (keepAliveAudioRef.current) {
+        keepAliveAudioRef.current.pause();
+      }
+    }
+  }, [isPlaying]);
+
   return (
     <main className={`app-shell atmosphere-${atmosphere} ${isCassetteMode ? "is-cassette-active" : ""}`}>
       <div className={`scene ${isPlaying ? "is-playing" : "is-paused"}`} aria-hidden="true">
