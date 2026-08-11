@@ -1,0 +1,16 @@
+{
+  "short_name": "TruckWala",
+  "name": "TruckWala — Indian Highway Retro Radio",
+  "icons": [
+    {
+      "src": "/truck-mark.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#130f25",
+  "theme_color": "#130f25",
+  "display": "standalone",
+  "orientation": "any"
+}

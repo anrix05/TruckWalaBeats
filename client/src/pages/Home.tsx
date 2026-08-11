@@ -840,6 +840,46 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isPlaying, progress, activeTrack, playerReady]);
 
+  // Register Navigator Media Session for Mobile Background & Lock Screen Playback
+  useEffect(() => {
+    if (!("mediaSession" in navigator)) return;
+
+    if (activeTrack) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: activeTrack.title,
+        artist: activeTrack.artist,
+        album: "TruckWala Highway Radio",
+        artwork: [
+          { src: activeTrack.albumArt || "/truck-mark.png", sizes: "512x512", type: "image/png" },
+        ],
+      });
+
+      navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
+    }
+
+    try {
+      navigator.mediaSession.setActionHandler("play", () => {
+        togglePlay();
+      });
+      navigator.mediaSession.setActionHandler("pause", () => {
+        togglePlay();
+      });
+      navigator.mediaSession.setActionHandler("previoustrack", () => {
+        previousTrack();
+      });
+      navigator.mediaSession.setActionHandler("nexttrack", () => {
+        nextTrack();
+      });
+      navigator.mediaSession.setActionHandler("seekto", (details) => {
+        if (details.seekTime !== undefined && activeTrack) {
+          handleSeek(Math.min(activeTrack.durationSeconds, Math.max(0, details.seekTime)));
+        }
+      });
+    } catch (e) {
+      console.warn("MediaSession action handler error", e);
+    }
+  }, [activeTrack, isPlaying]);
+
   return (
     <main className={`app-shell atmosphere-${atmosphere} ${isCassetteMode ? "is-cassette-active" : ""}`}>
       <div className={`scene ${isPlaying ? "is-playing" : "is-paused"}`} aria-hidden="true">
