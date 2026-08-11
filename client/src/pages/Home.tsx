@@ -626,8 +626,16 @@ export default function Home() {
           }, 350);
         },
         onStateChange: ({ data }: { data: number }) => {
-          if (data === 1) setIsPlaying(true);
-          if (data === 2 || data === 0) setIsPlaying(false);
+          if (data === 1) {
+            setIsPlaying(true);
+          } else if (data === 2 || data === 0) {
+            // On mobile, when user goes to home screen, YouTube fires PAUSED (2). Ignore if document.hidden
+            if (document.hidden && data === 2) {
+              console.log("Background playback active: preserving state");
+              return;
+            }
+            setIsPlaying(false);
+          }
         },
       },
     });
@@ -1094,7 +1102,8 @@ export default function Home() {
         <div className="header-left-cluster">
           <div className="luxury-status" aria-label={`TruckWala • ${listeners} listeners on the highway`}>
             <span className="status-pulse" />
-            <span>TRUCKWALA • {listeners} ON HIGHWAY</span>
+            <span className="desktop-status-text">TRUCKWALA • {listeners} ON HIGHWAY</span>
+            <span className="mobile-status-text">TRUCKWALA • {listeners}</span>
           </div>
 
           {/* Interactive Truck Horn Badge (Horn OK Please) */}
@@ -1106,7 +1115,8 @@ export default function Home() {
             aria-label="Honk Truck Horn"
           >
             <Radio size={12} className="horn-icon" />
-            <strong>HORN OK PLEASE</strong>
+            <strong className="desktop-horn-text">HORN OK PLEASE</strong>
+            <strong className="mobile-horn-text">HORN OK</strong>
           </button>
         </div>
 

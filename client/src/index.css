@@ -1530,39 +1530,61 @@ button:focus-visible, input:focus-visible { outline: 2px solid #f3a62a; outline-
    MOBILE & RESPONSIVE COMPATIBILITY SUITE (< 768px & < 480px)
    ========================================================================== */
 
+.desktop-status-text,
+.desktop-horn-text {
+  display: inline;
+}
+
+.mobile-status-text,
+.mobile-horn-text {
+  display: none;
+}
+
 @media (max-width: 640px) {
+  .desktop-status-text,
+  .desktop-horn-text {
+    display: none !important;
+  }
+
+  .mobile-status-text,
+  .mobile-horn-text {
+    display: inline !important;
+  }
+
   /* Ultra-Clean Single-Row Header Bar for Mobile */
   .reference-header.luxury-header {
-    top: 10px !important;
-    right: 10px !important;
-    left: 10px !important;
+    top: 8px !important;
+    right: 8px !important;
+    left: 8px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     flex-wrap: nowrap !important;
-    gap: 6px !important;
+    gap: 4px !important;
   }
 
   .header-left-cluster,
   .header-right-cluster {
     display: flex !important;
     align-items: center !important;
-    gap: 5px !important;
+    gap: 4px !important;
     flex-wrap: nowrap !important;
+    min-width: 0 !important;
   }
 
   /* Compact Mobile Status Badge */
   .luxury-status {
-    height: 30px !important;
-    padding: 0 9px !important;
-    font-size: 11px !important;
-    letter-spacing: 0.04em !important;
+    height: 32px !important;
+    padding: 0 8px !important;
+    font-size: 10.5px !important;
+    letter-spacing: 0.02em !important;
     white-space: nowrap !important;
+    flex: 0 1 auto !important;
   }
 
   .luxury-status span:last-child {
     display: inline-block;
-    max-width: 110px;
+    max-width: 105px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1570,26 +1592,24 @@ button:focus-visible, input:focus-visible { outline: 2px solid #f3a62a; outline-
 
   /* Compact Horn OK Badge */
   .horn-ok-please-badge {
-    height: 30px !important;
-    padding: 0 10px !important;
+    height: 32px !important;
+    padding: 0 9px !important;
     font-size: 10px !important;
-    letter-spacing: 0.04em !important;
+    letter-spacing: 0.02em !important;
     white-space: nowrap !important;
+    flex: 0 0 auto !important;
   }
 
   /* Compact Icon Pills for Mobile Header */
   .hud-action-button {
-    height: 30px !important;
-    padding: 0 9px !important;
+    height: 32px !important;
+    padding: 0 8px !important;
     font-size: 11px !important;
+    flex: 0 0 auto !important;
   }
 
-  /* Hide long button text on phone screens to prevent wrapping */
-  .hud-button-label {
-    display: none !important;
-  }
-
-  /* Hide desktop-only shortcut and fullscreen buttons on mobile */
+  /* Hide long button text and desktop-only buttons on phone screens */
+  .hud-button-label,
   .fullscreen-toggle,
   .shortcuts-btn {
     display: none !important;
@@ -1597,52 +1617,54 @@ button:focus-visible, input:focus-visible { outline: 2px solid #f3a62a; outline-
 
   /* Compact Clock Pill */
   .luxury-time {
-    height: 30px !important;
-    padding: 0 9px !important;
-    font-size: 12px !important;
-    letter-spacing: 0.04em !important;
+    height: 32px !important;
+    padding: 0 8px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
   }
 
   /* Poster Title Mobile Scaling */
   .poster-title {
-    top: 15% !important;
+    top: 14% !important;
     right: 4% !important;
   }
 
   .poster-title h1 {
-    font-size: clamp(32px, 8.5vw, 48px) !important;
+    font-size: clamp(30px, 8vw, 44px) !important;
     line-height: 0.95 !important;
   }
 
   .poster-title span {
-    font-size: clamp(18px, 4.5vw, 26px) !important;
+    font-size: clamp(16px, 4vw, 24px) !important;
   }
 
   /* Streamlined Mobile Player Dock */
   .player-dock {
-    width: calc(100% - 18px) !important;
-    bottom: 10px !important;
-    padding: 9px 12px 8px !important;
-    border-radius: 20px !important;
+    width: calc(100% - 16px) !important;
+    bottom: 8px !important;
+    padding: 8px 10px 6px !important;
+    border-radius: 18px !important;
   }
 
   .player-main-row {
-    gap: 8px !important;
+    gap: 6px !important;
   }
 
   .album-button {
-    width: 38px !important;
-    height: 38px !important;
+    width: 36px !important;
+    height: 36px !important;
   }
 
   .track-copy strong {
-    font-size: 10.5px !important;
-    max-width: 140px !important;
+    font-size: 10px !important;
+    max-width: 120px !important;
   }
 
   .track-copy span {
-    font-size: 8.5px !important;
-    max-width: 140px !important;
+    font-size: 8px !important;
+    max-width: 120px !important;
   }
 
   .play-button {
@@ -1651,41 +1673,48 @@ button:focus-visible, input:focus-visible { outline: 2px solid #f3a62a; outline-
   }
 
   .icon-button {
-    width: 28px !important;
-    height: 28px !important;
+    width: 26px !important;
+    height: 26px !important;
   }
 
-  /* Hide in-app volume slider on phones (users use physical hardware buttons) */
+  /* Force hide volume controls in player dock on mobile */
   .volume-button,
-  .volume-slider {
+  .volume-slider,
+  .player-dock .volume-button,
+  .player-dock .volume-slider {
     display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   /* Background Tree & Moon Mobile Positioning */
   .horizon-tree-container {
     left: 68% !important;
     bottom: 22% !important;
-    transform: scale(0.55) !important;
+    transform: scale(0.52) !important;
   }
 
   .lunar-moon-container {
-    top: 14% !important;
-    right: 12% !important;
+    top: 13% !important;
+    right: 10% !important;
   }
 
   .crescent-moon-svg {
-    width: 36px !important;
-    height: 36px !important;
+    width: 34px !important;
+    height: 34px !important;
   }
 }
 
 @media (max-width: 380px) {
   .luxury-status span:last-child {
-    max-width: 85px !important;
+    max-width: 75px !important;
   }
 
   .track-copy strong,
   .track-copy span {
-    max-width: 110px !important;
+    max-width: 100px !important;
   }
 }
