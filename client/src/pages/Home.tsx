@@ -63,20 +63,46 @@ declare global {
   }
 }
 
-const PLAYLIST_ID = "PLeatb7hupNV_AWUl_7ttbsKeCQh8tF5N4";
-const PLAYLIST_URL = `https://music.youtube.com/playlist?list=${PLAYLIST_ID}`;
 const posterBackground = "/poster-bg.png";
 const coverArt = ["/cover-01.png", "/cover-02.png", "/cover-03.png"];
 
-const fallbackTracks: Track[] = [
-  { title: "Mujhse Mohabbat Ka Izhaar", artist: "Nadeem Shravan", caption: "मुझसे मोहब्बत का इज़हार", durationSeconds: 304, albumArt: coverArt[0], videoId: "5pGZ8u8ZlP0" },
-  { title: "Tumsa Koi Pyaara", artist: "Kumar Sanu", caption: "तुमसा कोई प्यारा", durationSeconds: 376, albumArt: coverArt[1], videoId: "sE_QeUfJp-E" },
-  { title: "Waada Raha Sanam", artist: "Abhijeet · Alka Yagnik", caption: "वादा रहा सनम", durationSeconds: 365, albumArt: coverArt[2], videoId: "iH7sZg3Y46M" },
-  { title: "Chhupana Bhi Nahin Aata", artist: "Vinod Rathod · Venus Movies", caption: "छुपाना भी नहीं आता", durationSeconds: 253, albumArt: coverArt[0], videoId: "83r9kPjL1vA" },
-  { title: "Jhanjharia (Male)", artist: "Abhijeet Bhattacharya", caption: "झांझरिया", durationSeconds: 309, albumArt: coverArt[1], videoId: "b71jG5r-2v4" },
-  { title: "Husn Hai Suhana", artist: "Chandana Dixit · Abhijeet", caption: "हुस्न है सुहाना", durationSeconds: 348, albumArt: coverArt[2], videoId: "03qgE8e1Moc" },
-  { title: "Jeeye To Jeeye Kaise", artist: "Pankaj Udhas", caption: "जीए तो जीए कैसे", durationSeconds: 217, albumArt: coverArt[0], videoId: "J6mKqHqV_U8" },
-  { title: "More from Bus Driver ki Playlist", artist: "Open the queue to browse", caption: "बस ड्राइवर की प्लेलिस्ट", durationSeconds: 300, albumArt: coverArt[1] },
+export type PlaylistConfig = {
+  id: string;
+  name: string;
+  subtitle: string;
+  url: string;
+  fallbackTracks: Track[];
+};
+
+export const PLAYLISTS: PlaylistConfig[] = [
+  {
+    id: "PLeatb7hupNV_AWUl_7ttbsKeCQh8tF5N4",
+    name: "Truck Driver Classic",
+    subtitle: "Bus Driver ki Playlist • 90s Highway Dhaba Hits",
+    url: "https://music.youtube.com/playlist?list=PLeatb7hupNV_AWUl_7ttbsKeCQh8tF5N4",
+    fallbackTracks: [
+      { title: "Mujhse Mohabbat Ka Izhaar", artist: "Nadeem Shravan", caption: "मुझसे मोहब्बत का इज़हार", durationSeconds: 304, albumArt: coverArt[0], videoId: "5pGZ8u8ZlP0" },
+      { title: "Tumsa Koi Pyaara", artist: "Kumar Sanu", caption: "तुमसा कोई प्यारा", durationSeconds: 376, albumArt: coverArt[1], videoId: "sE_QeUfJp-E" },
+      { title: "Waada Raha Sanam", artist: "Abhijeet · Alka Yagnik", caption: "वादा रहा सनम", durationSeconds: 365, albumArt: coverArt[2], videoId: "iH7sZg3Y46M" },
+      { title: "Chhupana Bhi Nahin Aata", artist: "Vinod Rathod · Venus", caption: "छुपाना भी नहीं आता", durationSeconds: 253, albumArt: coverArt[0], videoId: "83r9kPjL1vA" },
+      { title: "Jhanjharia (Male)", artist: "Abhijeet Bhattacharya", caption: "झांझरिया", durationSeconds: 309, albumArt: coverArt[1], videoId: "b71jG5r-2v4" },
+      { title: "Husn Hai Suhana", artist: "Chandana Dixit · Abhijeet", caption: "हुस्न है सुहाना", durationSeconds: 348, albumArt: coverArt[2], videoId: "03qgE8e1Moc" },
+      { title: "Jeeye To Jeeye Kaise", artist: "Pankaj Udhas", caption: "जीए तो जीए कैसे", durationSeconds: 217, albumArt: coverArt[0], videoId: "J6mKqHqV_U8" },
+    ],
+  },
+  {
+    id: "RDCLAK5uy_kiDNaS5nAXxdzsqFElFKKKs0GUEFJE26w",
+    name: "Highway Retro Hits",
+    subtitle: "Golden Era Highway Beats & Retro Nostalgia",
+    url: "https://music.youtube.com/playlist?list=RDCLAK5uy_kiDNaS5nAXxdzsqFElFKKKs0GUEFJE26w",
+    fallbackTracks: [
+      { title: "Pehla Nasha", artist: "Udit Narayan · Sadhana Sargam", caption: "पहला नशा", durationSeconds: 290, albumArt: coverArt[1], videoId: "a2Z0v0N-K4s" },
+      { title: "Ek Ladki Ko Dekha", artist: "Kumar Sanu", caption: "एक लड़की को देखा", durationSeconds: 275, albumArt: coverArt[2], videoId: "V_J_pP3c7sY" },
+      { title: "Tujhe Dekha To", artist: "Kumar Sanu · Lata Mangeshkar", caption: "तुझे देखा तो", durationSeconds: 302, albumArt: coverArt[0], videoId: "cNV5hLSa9nG" },
+      { title: "Chura Ke Dil Mera", artist: "Kumar Sanu · Alka Yagnik", caption: "चुरा के दिल मेरा", durationSeconds: 285, albumArt: coverArt[1], videoId: "a1a8p7N1d7U" },
+      { title: "Aankhey Khuli", artist: "Lata Mangeshkar · Udit Narayan", caption: "आँखें खुलीं", durationSeconds: 330, albumArt: coverArt[2], videoId: "2v-sP_W4S4w" },
+    ],
+  },
 ];
 
 function getFreshTrackIndex(trackCount: number) {
@@ -103,7 +129,8 @@ function formatTime(seconds: number) {
 }
 
 function toTrack(index: number, videoId?: string): Track {
-  const base = fallbackTracks[index % fallbackTracks.length];
+  const baseTracks = PLAYLISTS[0].fallbackTracks;
+  const base = baseTracks[index % baseTracks.length];
   return {
     ...base,
     videoId,
@@ -119,8 +146,18 @@ export default function Home() {
   const audioCtxRef = useRef<AudioContext | null>(null);
   const cassetteNoiseRef = useRef<AudioNode | null>(null);
 
-  const [tracks, setTracks] = useState<Track[]>(fallbackTracks);
-  const [activeIndex, setActiveIndex] = useState(() => getFreshTrackIndex(fallbackTracks.length));
+  const [activePlaylistIndex, setActivePlaylistIndex] = useState(() => {
+    try {
+      const saved = Number.parseInt(window.localStorage.getItem("truck-pe-active-playlist") ?? "0", 10);
+      return Number.isNaN(saved) || saved < 0 || saved >= PLAYLISTS.length ? 0 : saved;
+    } catch {
+      return 0;
+    }
+  });
+
+  const activePlaylist = PLAYLISTS[activePlaylistIndex];
+  const [tracks, setTracks] = useState<Track[]>(activePlaylist.fallbackTracks);
+  const [activeIndex, setActiveIndex] = useState(() => getFreshTrackIndex(activePlaylist.fallbackTracks.length));
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [queueOpen, setQueueOpen] = useState(false);
@@ -142,7 +179,7 @@ export default function Home() {
   const startDragAngle = useRef(0);
   const startDragProgress = useRef(0);
 
-  const activeTrack = tracks[activeIndex] ?? fallbackTracks[0];
+  const activeTrack = tracks[activeIndex] ?? activePlaylist.fallbackTracks[0];
   const progressRatio = Math.min(progress / Math.max(activeTrack.durationSeconds, 1), 1);
   const clockLabel = useMemo(
     () => clock.toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" }).toLowerCase(),
@@ -604,7 +641,7 @@ export default function Home() {
       playerVars: {
         enablejsapi: 1,
         listType: "playlist",
-        list: PLAYLIST_ID,
+        list: activePlaylist.id,
         controls: 0,
         disablekb: 1,
         playsinline: 1,
@@ -617,7 +654,7 @@ export default function Home() {
           playerRef.current = target;
           setPlayerReady(true);
           target.setVolume(volume);
-          target.loadPlaylist({ listType: "playlist", list: PLAYLIST_ID, index: activeIndex });
+          target.loadPlaylist({ listType: "playlist", list: activePlaylist.id, index: activeIndex });
           window.setTimeout(() => {
             if (pendingPlayRef.current) {
               target.playVideo();
@@ -739,12 +776,31 @@ export default function Home() {
     }
   };
 
+  const switchPlaylist = (index: number) => {
+    const nextIdx = (index + PLAYLISTS.length) % PLAYLISTS.length;
+    setActivePlaylistIndex(nextIdx);
+    const targetPlaylist = PLAYLISTS[nextIdx];
+    setTracks(targetPlaylist.fallbackTracks);
+    setActiveIndex(0);
+    setProgress(0);
+    try {
+      window.localStorage.setItem("truck-pe-active-playlist", String(nextIdx));
+    } catch {}
+
+    const player = playerRef.current;
+    if (player && playerReady) {
+      player.loadPlaylist({ listType: "playlist", list: targetPlaylist.id, index: 0 });
+      player.playVideo();
+      setIsPlaying(true);
+    }
+  };
+
   const selectTrack = (index: number) => {
     setActiveIndex(index);
     setProgress(0);
     const player = playerRef.current;
     if (player && playerReady) {
-      player.loadPlaylist({ listType: "playlist", list: PLAYLIST_ID, index });
+      player.loadPlaylist({ listType: "playlist", list: activePlaylist.id, index });
       player.playVideo();
     } else {
       pendingPlayRef.current = true;
@@ -754,7 +810,7 @@ export default function Home() {
   const nextTrack = () => {
     const player = playerRef.current;
     if (player && playerReady) {
-      if (isShuffle && tracks.length > 1) player.loadPlaylist({ listType: "playlist", list: PLAYLIST_ID, index: Math.floor(Math.random() * tracks.length) });
+      if (isShuffle && tracks.length > 1) player.loadPlaylist({ listType: "playlist", list: activePlaylist.id, index: Math.floor(Math.random() * tracks.length) });
       else player.nextVideo();
       player.playVideo();
       return;
@@ -1144,6 +1200,18 @@ export default function Home() {
         </div>
 
         <div className="header-right-cluster">
+          {/* Dual Playlist Radio Switcher Pill */}
+          <button
+            type="button"
+            className="hud-action-button playlist-toggle"
+            onClick={() => switchPlaylist((activePlaylistIndex + 1) % PLAYLISTS.length)}
+            title={`Active Station: ${activePlaylist.name} (Click to switch)`}
+            aria-label="Switch Playlist"
+          >
+            <ListMusic size={14} />
+            <span className="hud-button-label">{activePlaylistIndex === 0 ? "Station 1" : "Station 2"}</span>
+          </button>
+
           {/* Atmosphere Theme Switcher */}
           <button
             type="button"
@@ -1238,44 +1306,29 @@ export default function Home() {
             <span>{activeTrack.artist}</span>
           </div>
 
-          {/* Real-time Highway Seekbar with Live Truck & Dynamic Spectrum */}
-          <div className="floating-progress-row" aria-label="Track progress">
-            <span className="floating-time-stamp">{formatTime(progress)}</span>
-            <div className="floating-road-progress">
-              {/* Dynamic 24-Bar Audio Visualizer Spectrum */}
-              <div className="road-audio-visualizer" aria-hidden="true">
-                {Array.from({ length: 24 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className="visualizer-bar"
-                    style={{
-                      ["--bar-index" as any]: i,
-                      ["--bar-scale" as any]: isPlaying ? 0.25 + ((Math.sin(i * 0.8 + progress * 4) + 1) / 2) * 0.75 : 0.08,
-                    }}
-                  />
-                ))}
+          {/* Audio Seekbar Road */}
+          <div className="seekbar-road-container">
+            <span className="time-display">{formatTime(progress)}</span>
+            <div
+              className="seekbar-road-track"
+              onClick={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+                handleSeek(ratio * activeTrack.durationSeconds);
+              }}
+            >
+              <div className="seekbar-road-dashes" />
+              <div className="seekbar-road-fill" style={{ width: `${progressRatio * 100}%` }} />
+              <div className="seekbar-truck-marker" style={{ left: `${progressRatio * 100}%` }}>
+                🚚
               </div>
-
-              <div className="floating-progress-fill" style={{ width: `${progressRatio * 100}%` }} />
-              <div className="floating-truck-marker" style={{ left: `${progressRatio * 100}%` }}>
-                <span className="truck-marker-cab" />
-                <span className="truck-marker-wheel wheel-left" />
-                <span className="truck-marker-wheel wheel-right" />
-              </div>
-              <input
-                type="range"
-                min="0"
-                max={Math.max(activeTrack.durationSeconds, 1)}
-                value={Math.floor(progress)}
-                onChange={(e) => handleSeek(Number(e.target.value))}
-                aria-label="Seek track"
-              />
             </div>
-            <span className="floating-time-stamp">{formatTime(activeTrack.durationSeconds)}</span>
+            <span className="time-display">{formatTime(activeTrack.durationSeconds)}</span>
           </div>
 
           {/* Transport Controls Row */}
-          <div className="floating-control-row">
+          <div className="floating-controls-row">
             <button
               className={`floating-icon-button ${isShuffle ? "is-active" : ""}`}
               type="button"
@@ -1358,18 +1411,34 @@ export default function Home() {
       {/* Playlist Queue Drawer */}
       {queueOpen && (
         <div className="sheet-backdrop" onClick={() => setQueueOpen(false)}>
-          <section className="queue-sheet" onClick={(event) => event.stopPropagation()} aria-label="Bus Driver ki Playlist">
+          <section className="queue-sheet" onClick={(event) => event.stopPropagation()} aria-label="Highway Radio Station Playlist">
             <div className="sheet-handle" />
             <div className="sheet-header">
               <div>
-                <span className="sheet-kicker">YOUTUBE MUSIC PLAYLIST</span>
-                <h2>Bus Driver ki Playlist</h2>
-                <p>{tracks.length} songs · the new route</p>
+                <span className="sheet-kicker">HIGHWAY RADIO STATIONS</span>
+                <h2>{activePlaylist.name}</h2>
+                <p>{activePlaylist.subtitle}</p>
               </div>
               <button className="icon-button close-button" type="button" onClick={() => setQueueOpen(false)} aria-label="Close playlist">
                 <X size={18} />
               </button>
             </div>
+
+            {/* Playlist Station Selector Tabs */}
+            <div className="playlist-tabs-bar">
+              {PLAYLISTS.map((pl, idx) => (
+                <button
+                  key={pl.id}
+                  type="button"
+                  className={`playlist-tab-btn ${idx === activePlaylistIndex ? "is-active" : ""}`}
+                  onClick={() => switchPlaylist(idx)}
+                >
+                  <Radio size={12} />
+                  <span>{pl.name}</span>
+                </button>
+              ))}
+            </div>
+
             <div className="queue-list">
               {tracks.map((track, index) => (
                 <button
@@ -1397,7 +1466,7 @@ export default function Home() {
               <span>
                 <span className={`status-dot ${playerReady ? "ready" : ""}`} /> Official YouTube Music source
               </span>
-              <a href={PLAYLIST_URL} target="_blank" rel="noreferrer">
+              <a href={activePlaylist.url} target="_blank" rel="noreferrer">
                 Open playlist <ExternalLink size={12} />
               </a>
             </div>
