@@ -1306,29 +1306,44 @@ export default function Home() {
             <span>{activeTrack.artist}</span>
           </div>
 
-          {/* Audio Seekbar Road */}
-          <div className="seekbar-road-container">
-            <span className="time-display">{formatTime(progress)}</span>
-            <div
-              className="seekbar-road-track"
-              onClick={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-                handleSeek(ratio * activeTrack.durationSeconds);
-              }}
-            >
-              <div className="seekbar-road-dashes" />
-              <div className="seekbar-road-fill" style={{ width: `${progressRatio * 100}%` }} />
-              <div className="seekbar-truck-marker" style={{ left: `${progressRatio * 100}%` }}>
-                🚚
+          {/* Real-time Highway Seekbar with Live Truck & Dynamic Spectrum */}
+          <div className="floating-progress-row" aria-label="Track progress">
+            <span className="floating-time-stamp">{formatTime(progress)}</span>
+            <div className="floating-road-progress">
+              {/* Dynamic 24-Bar Audio Visualizer Spectrum */}
+              <div className="road-audio-visualizer" aria-hidden="true">
+                {Array.from({ length: 24 }).map((_, i) => (
+                  <span
+                    key={i}
+                    className="visualizer-bar"
+                    style={{
+                      ["--bar-index" as any]: i,
+                      ["--bar-scale" as any]: isPlaying ? 0.25 + ((Math.sin(i * 0.8 + progress * 4) + 1) / 2) * 0.75 : 0.08,
+                    }}
+                  />
+                ))}
               </div>
+
+              <div className="floating-progress-fill" style={{ width: `${progressRatio * 100}%` }} />
+              <div className="floating-truck-marker" style={{ left: `${progressRatio * 100}%` }}>
+                <span className="truck-marker-cab" />
+                <span className="truck-marker-wheel wheel-left" />
+                <span className="truck-marker-wheel wheel-right" />
+              </div>
+              <input
+                type="range"
+                min="0"
+                max={Math.max(activeTrack.durationSeconds, 1)}
+                value={Math.floor(progress)}
+                onChange={(e) => handleSeek(Number(e.target.value))}
+                aria-label="Seek track"
+              />
             </div>
-            <span className="time-display">{formatTime(activeTrack.durationSeconds)}</span>
+            <span className="floating-time-stamp">{formatTime(activeTrack.durationSeconds)}</span>
           </div>
 
           {/* Transport Controls Row */}
-          <div className="floating-controls-row">
+          <div className="floating-control-row">
             <button
               className={`floating-icon-button ${isShuffle ? "is-active" : ""}`}
               type="button"
